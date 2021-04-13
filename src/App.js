@@ -8,13 +8,42 @@ import {
   Route,
   Link
 } from "react-router-dom";
+import Review from './components/Review/Review';
+import Inventory from './components/Inventory/Inventory';
+import NotFound from './components/NotFound/NotFound';
+import ProductDetails from './components/ProductDetail/ProductDetails';
 
 
 function App() {
   return (
     <div>
       <Header></Header>
-      <Shop></Shop>
+      
+      <Router>
+      <div>
+        <Switch>
+          <Route path="/shop">
+            <Shop />
+          </Route>
+          <Route path="/review">
+            <Review />
+          </Route>
+          <Route path="/inventory">
+            <Inventory />
+          </Route>
+          <Route exact path="/">
+            <Shop />
+          </Route>
+          <Route path="/product/:productKey">
+             <ProductDetails />
+          </Route>
+
+          <Route path="*">
+          <NotFound />
+          </Route>
+        </Switch>
+      </div>
+    </Router>
       
     </div>
   );
